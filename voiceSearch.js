@@ -1,5 +1,3 @@
-const $ = el => document.querySelector(el);
-
 const store = {
     texts: '',
     isRecognizing: true,
@@ -20,7 +18,7 @@ const store = {
         recognition.onspeechend = function () {
             // 음성 감지가 끝날때 실행될 이벤트
             recognition.stop();
-            $('.dictate').classList.remove('on');
+            document.querySelector('.dictate').classList.remove('on');
             store.isRecognizing = true;
         };
 
@@ -31,23 +29,23 @@ const store = {
                 .join('');
 
             console.log(store.texts);
-            $('input').value = store.texts;
+            document.querySelector('input').value = store.texts;
         };
         /* // Speech API END */
 
         const active = () => {
-            $('.dictate').classList.add('on');
+            document.querySelector('.dictate').classList.add('on');
             recognition.start();
             store.isRecognizing = false;
         };
 
         const unactive = () => {
-            $('.dictate').classList.remove('on');
+            document.querySelector('.dictate').classList.remove('on');
             recognition.stop();
             store.isRecognizing = true;
         };
 
-        $('.dictate').addEventListener('click', () => {
+        document.querySelector('.dictate').addEventListener('click', () => {
             if (store.isRecognizing) {
                 active();
             } else {
